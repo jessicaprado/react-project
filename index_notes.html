@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <script type="text/babel">
+            class App extends React.Component {
+                //set state to js object
+                state = {
+                    name: 'Jess',
+                    age: 34
+                }
+
+                changeName = (e) => {
+                    this.setState({
+                        name: e.target.value
+                    }) 
+                }
+
+                handleSubmit = (e) => {
+                    e.preventDefault();
+                    console.log('form Submitted', this.state.name)
+                }
+                //all components MUST include render()
+                render() {
+                    //will return JSX - way to write html code instide javascript
+                    return (
+                        //must return one root element at the top
+                        //cannot use the word class. must use className
+                        <div>
+                           
+                            <p>My name is { this.state.name } and I am {this.state.age}</p>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text" onChange={this.changeName}/>
+                                <button>submit</button>
+                            </form>
+                
+                        </div>
+                    )
+                }
+            }
+            //takes two argurments.. the class you want to render and where you want to render to
+            ReactDOM.render(<App/>, document.getElementById('app'))
+        </script>
+    </body>
+</html>
